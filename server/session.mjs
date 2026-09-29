@@ -32,10 +32,10 @@ export async function readSession(token, {secret} = {}) {
 
 // ---- cookie transport (table) ----
 
-export function sessionCookie(name, token, {secure = true} = {}) {
+export function sessionCookie(name, token, {secure = true, path = '/'} = {}) {
   return [
     `${name}=${token}`,
-    'Path=/',
+    `Path=${path}`,
     'HttpOnly',
     'SameSite=Lax',
     `Max-Age=${SESSION_TTL_SECONDS}`,
@@ -43,8 +43,8 @@ export function sessionCookie(name, token, {secure = true} = {}) {
   ].filter(Boolean).join('; ')
 }
 
-export function clearCookie(name, {secure = true} = {}) {
-  return [`${name}=`, 'Path=/', 'HttpOnly', 'SameSite=Lax', 'Max-Age=0', secure ? 'Secure' : ''].filter(Boolean).join('; ')
+export function clearCookie(name, {secure = true, path = '/'} = {}) {
+  return [`${name}=`, `Path=${path}`, 'HttpOnly', 'SameSite=Lax', 'Max-Age=0', secure ? 'Secure' : ''].filter(Boolean).join('; ')
 }
 
 export function cookieValue(req, name) {
