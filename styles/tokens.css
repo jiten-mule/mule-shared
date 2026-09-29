@@ -1,0 +1,75 @@
+/* ===== mule. desk — design tokens (v2.1) =====
+   Paper, ink, coral, hairlines. Rectangles only. Inter primary,
+   system sans fallback. Values lifted from the v2.1 design handoff —
+   see Mule Desk UI Design brief — v2.1 supplement. */
+
+:root {
+  /* Surfaces */
+  --paper:        #FBF9F4;
+  --paper-warm:   #F5F1E6;   /* row hover · alt stripe · banner fill */
+  --soft:         #F2EFE6;   /* matrix header/footer · alt surface */
+
+  /* Ink — rgba scale, layered onto paper */
+  --ink:          #1A1714;
+  --ink-2:        rgba(26, 23, 20, 0.62);
+  --ink-3:        rgba(26, 23, 20, 0.38);
+  --ink-4:        rgba(26, 23, 20, 0.18);
+
+  /* Rules — hair = soft hairline, rule = heavy hairline (= ink) */
+  --hair:         #E5DFD3;
+  --rule:         #1A1714;
+
+  /* Coral — focus, active, link, "+", parked flag, matrix hot cell */
+  --coral:        #FF6D6A;
+  --coral-soft:   rgba(255, 109, 106, 0.10);
+  --coral-press:  #E84E4B;
+
+  /* Type — Inter, system fallback */
+  --font-ui:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, system-ui, sans-serif;
+  --font-mono:  ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale (tight — internal tool, laptops & desktops) */
+  --fs-micro:    11px;
+  --fs-label:    12px;
+  --fs-body:     13px;
+  --fs-body-lg:  14px;
+  --fs-h4:       16px;
+  --fs-h3:       20px;
+  --fs-h2:       28px;
+  --fs-h1:       40px;
+
+  --lh-tight:   1.15;
+  --lh-snug:    1.35;
+  --lh-loose:   1.55;
+
+  --tracking-wide:  0.14em;
+  --tracking-tight: -0.01em;
+
+  /* Spacing — 4-step */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 48px;
+  --s-9: 64px;
+
+  /* Layout */
+  --page-max:   1120px;
+  --page-pad:   clamp(20px, 4vw, 48px);
+  --gutter:     24px;
+
+  /* Motion */
+  --dur-fast:  80ms;
+  --dur-base: 140ms;
+  --ease-std: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Board column geometry */
+  --col-w:        280px;
+  --col-w-narrow: 260px;
+  --col-gap:       16px;
+}
+

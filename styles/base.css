@@ -1,0 +1,243 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+/* Rectangles only — the design system has no rounded corners. */
+*, *::before, *::after { border-radius: 0; }
+
+html, body { height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  line-height: var(--lh-snug);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; }
+button {
+  font: inherit; color: inherit; background: none; border: 0; cursor: pointer;
+  padding: 0;
+}
+
+/* Numbers stack — tabular variants in count chips, progress lines, etc. */
+.num { font-variant-numeric: tabular-nums; }
+
+/* Hairline rule — one px only. */
+.hr { height: 1px; background: var(--hair); border: 0; }
+
+/* Type scale — UI sans, weight + size do the work. */
+.display { font-weight: 600; letter-spacing: -0.5px; }
+.headline { font-weight: 600; letter-spacing: -0.3px; }
+.title { font-weight: 600; letter-spacing: -0.2px; }
+.body { font-weight: 400; }
+.small { font-size: 14px; }
+.tiny { font-size: 12px; letter-spacing: 0.4px; }
+.italic { font-style: italic; }
+.muted { color: var(--ink-2); }
+.faint { color: var(--ink-3); }
+
+/* Legacy: the v2 wordmark as an image asset. Still used on the
+   sign-in screen and the auth-error fallback. v2.1's topbar uses a
+   different lockup (.topbar .wordmark on a NavLink) — scope these
+   rules to `img.wordmark` so they don't bleed onto the container. */
+img.wordmark {
+  display: inline-block;
+  height: 22px;
+  width: auto;
+  vertical-align: middle;
+}
+img.wordmark.large { height: 56px; }
+
+/* Layout primitives — purposely small, used as building blocks */
+.stack > * + * { margin-top: var(--gap, 16px); }
+.row { display: flex; align-items: center; gap: var(--gap, 12px); flex-wrap: wrap; }
+.spread { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+/* Sharp inputs */
+input, textarea, select {
+  font: inherit; color: inherit;
+  background: transparent;
+  border: 1px solid var(--hair);
+  border-radius: 0;
+  padding: 8px 10px;
+  width: 100%;
+  outline: none;
+}
+input:focus, textarea:focus, select:focus { border-color: var(--ink); }
+textarea { resize: vertical; min-height: 80px; }
+
+/* Coral accent button — used sparingly */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn-ghost { border-color: var(--hair); }
+.btn-ghost:hover { border-color: var(--ink); background: transparent; color: var(--ink); }
+.btn-coral { border-color: var(--coral); color: var(--coral); }
+.btn-coral:hover { background: var(--coral); color: var(--paper); }
+
+/* Workstream / state colour stripe on cards */
+.stripe {
+  display: inline-block;
+  width: 12px; height: 12px;
+  background: var(--coral);
+}
+
+/* Assignee chip — letters only, with letter-spacing. No pill. */
+.assignee {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: var(--coral);
+  text-transform: uppercase;
+}
+
+/* The four work-item state marks, drawn as small squares. */
+.mark { display: inline-block; width: 9px; height: 9px; border: 1px solid var(--ink); margin-right: 3px; vertical-align: -1px; }
+.mark.done { background: var(--ink); }
+.mark.in-progress { background: linear-gradient(90deg, var(--ink) 50%, transparent 50%); }
+.mark.not-started { background: transparent; }
+
+/* The manuscript-tick "done" marker in the margin */
+.done-tick {
+  display: inline-block;
+  width: 14px; height: 2px;
+  background: var(--coral);
+  vertical-align: middle;
+}
+
+/* Decision badge — sharp-edged, coral */
+.badge-decision {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--coral-soft);
+  color: var(--coral);
+  border: 1px solid var(--coral);
+  font-size: 11px;
+  letter-spacing: 0.4px;
+}
+
+/* ─── Topbar (v2.1, design handoff) ─── */
+.topbar {
+  border-bottom: 1px solid var(--hair);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar-inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: var(--s-7);
+}
+/* The lockup is its own class — .desk-lockup — to keep clear of any
+   legacy .wordmark rule that might apply to a non-img container. */
+.topbar .desk-lockup {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+.topbar .desk-lockup .mark {
+  display: block;
+  height: 22px;
+  width: auto;          /* keep PNG aspect ratio */
+  border: 0;
+}
+.topbar .desk-lockup .mark-text {
+  display: inline-flex;
+  align-items: baseline;
+}
+.topbar .desk-lockup::after {
+  content: var(--lockup-suffix, " desk");
+  color: var(--ink-2);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.topbar .desk-lockup .dot { color: var(--coral); }
+
+.topbar .nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-left: var(--s-2);
+}
+.topbar .nav a {
+  appearance: none;
+  background: transparent;
+  padding: 8px 12px;
+  font-size: var(--fs-body);
+  color: var(--ink-2);
+  cursor: pointer;
+  position: relative;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+}
+.topbar .nav a:hover { color: var(--ink); }
+.topbar .nav a.active { color: var(--ink); }
+.topbar .nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 12px; right: 12px; bottom: -1px;
+  height: 1px;
+  background: var(--coral);
+}
+
+.topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  color: var(--ink-2);
+  font-size: var(--fs-label);
+}
+.topbar-right .me {
+  display: flex; align-items: center; gap: 8px;
+  color: var(--ink);
+}
+.topbar-right .me .ini {
+  width: 22px; height: 22px;
+  display: inline-grid; place-items: center;
+  background: var(--coral);
+  color: var(--paper);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0;
+}
+.topbar-right .me .name { font-size: var(--fs-body); }
+.topbar-right .signout {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+.topbar-right .signout:hover { color: var(--ink); }
+@media (max-width: 720px) {
+  .topbar-right .me .name { display: none; }
+}
+
+/* Page wrappers */
+.page { max-width: 1400px; margin: 0 auto; padding: 32px; }

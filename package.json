@@ -1,0 +1,14 @@
+{
+  "name": "@mule/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "mule. shared: design tokens, base styles, session and Google-token verification used by desk, bench and table.",
+  "exports": {
+    "./styles/tokens.css": "./styles/tokens.css",
+    "./styles/base.css": "./styles/base.css",
+    "./server/session": "./server/session.mjs",
+    "./server/google": "./server/google.mjs"
+  },
+  "peerDependencies": {"jose": "^5.0.0 || ^6.0.0"}
+}
